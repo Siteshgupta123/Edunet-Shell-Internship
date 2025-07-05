@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ghg-emission-app
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: python app.py
+    runtime: python-3.10
