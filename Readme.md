@@ -3,10 +3,10 @@
   <img src="static/Shell-Logo.png" alt="Shell" height="15">
 </p>
 
-# <h1 align="center">🌍GHG Emission Predictor Web App</h1>
+# <h1 align="center">GHG Emission Predictor Web App</h1>
 Predict greenhouse gas emissions based on energy consumption inputs using a Flask-powered web interface.This project is apart of Edunet Foundation x Shell AI/ML Internship, focusing on real-world applications of machine learning for sustainability.
 ---
-## 📂 Project Structure
+## Project Structure
 ```
 GHG Emission App/
 ├── app.py                       # Main Flask application file
@@ -33,7 +33,7 @@ GHG Emission App/
 - runtime.txt: Ensures Render uses Python 3.10 (not 3.13!)
 
 ----
-## 🧠 Technologies Used
+## Technologies Used
 - **Python 3.10**
 - **Flask** — Web framework
 - **scikit-learn** — For model building and prediction
@@ -42,7 +42,7 @@ GHG Emission App/
 - **openpyxl** — Excel file support
 
 ---
-## 🖥️ How to Run Locally
+##  How to Run Locally
 1. Clone the repo:
 ```
 git clone https://github.com/Siteshgupta123/Edunet-Shell-Internship.git
@@ -60,13 +60,13 @@ python app.py
 ```
 http://localhost:5000
 ```
-Features
+### Features
 - Interactive HTML form for GHG prediction
 - Uses trained ML model to estimate emissions
 - Scales inputs dynamically using StandardScaler
 - Sleek web interface with Edunet & Shell branding
 ----
-Example Inputs: Energy Scenario
+### Example Inputs: Energy Scenario:
 | **Field**                      | **Value**                          |
 |-------------------------------|------------------------------------|
 | Substance                     | Carbon dioxide                     |
@@ -80,4 +80,5 @@ Example Inputs: Energy Scenario
 | DQ Technological Correlation  | 0.86                               |
 | DQ Data Collection            | 0.82                               |
 | Predicted Emission            | 61.3274 kg CO₂e/unit               |
+> Value may be vary at time of prediction.
 -----------------------------------------------------------------------------
