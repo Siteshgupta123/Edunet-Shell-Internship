@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenHouse Gas Emission Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <!-- Style -->
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0f7fa 0%, #e8f5e9 100%);
+    min-height: 100vh;
+    position: relative;
+    color: #1b2a41;
+}
+
+.background-img {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+    opacity: 0.18;
+    filter: grayscale(0.2) blur(1px);
+}
+
+.container {
+    max-width: 50%;
+    margin: 50px auto 0 auto;
+    background: rgba(255,255,255,0.97);
+    border-radius: 25px;
+    box-shadow: 0 6px 32px rgba(44, 62, 80, 0.13);
+    padding: 32px 24px 24px 24px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.logo-link {
+    display: inline-block;
+}
+
+.logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(44, 62, 80, 0.08));
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px 8px;
+}
+
+h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.7rem;
+    color: #00796b;
+    text-align: center;
+    margin-bottom: 28px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1rem;
+    color: #1565c0;
+    font-weight: 500;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+    padding: 9px 12px;
+    border: 1.5px solid #b2dfdb;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #f9fbe7;
+    transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #1976d2;
+    outline: none;
+    background: #e3f2fd;
+}
+
+.predict-btn {
+    margin-top: 12px;
+    padding: 12px 0;
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+    transition: background 0.2s, transform 0.1s;
+}
+
+.predict-btn:hover {
+    background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+    transform: translateY(-2px) scale(1.03);
+}
+
+#output-section {
+    margin-top: 32px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    padding: 18px 14px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+}
+
+#predicted-value {
+    font-size: 1.3rem;
+    color: #388e3c;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#input-summary {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#input-summary li {
+    font-size: 0.98rem;
+    color: #1b2a41;
+    margin-bottom: 3px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 98vw;
+        padding: 16px 4vw 18px 4vw;
+        margin: 16px auto 0 auto;
+    }
+    h1 {
+        font-size: 1.15rem;
+    }
+    .logo {
+        height: 32px;
+        padding: 2px 4px;
+    }
+    #output-section {
+        padding: 12px 6px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header with logos -->
+        <header>
+            <a href="https://edunetfoundation.org" target="_blank">
+                <img src="{{ url_for('static', filename='Edunet-Foundation-logo.png') }}" alt="Edunet Logo" class="logo">
+            </a>
+            <a href="https://shell.in" target="_blank">
+                <img src="{{ url_for('static', filename='Shell-logo.png') }}" alt="Shell Logo" class="logo">
+            </a>
+        </header>
+
+        <h1>GreenHouse Gas Emission Prediction</h1>
+        <!-- Prediction Form -->
+        <form id="ghg-form" method="POST" autocomplete="off">
+            <div class="form-group">
+                <label for="substance">Substance</label>
+                <select id="substance" name="substance" required>
+                    <option value="">Select Substance</option>
+                    <option value="Carbon Dioxide">Carbon Dioxide</option>
+                    <option value="Methane">Methane</option>
+                    <option value="Nitrous Oxide">Nitrous Oxide</option> 
+                    <!-- Add more as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="unit">Unit</label>
+                <select id="unit" name="unit" required>
+                    <option value="">Select Unit</option>
+                    <option value="kg">kg</option>
+                    <option value="ton">ton</option>
+                    <option value="g">g</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="source">Source</label>
+                <select id="source" name="source" required>
+                    <option value="">Select Source</option>
+                    <option value="Energy">Energy</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Industry">Industry</option>
+                    <!-- Add more as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="supply_chain">Supply Chain</label>
+                <input type="number" id="supply_chain" name="supply_chain" min="0" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="margin">Margin</label>
+                <input type="number" id="margin" name="margin" min="0" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="dq_reliability">DQ Reliability</label>
+                <input type="text" id="dq_reliability" name="dq_reliability" required>
+            </div>
+            <div class="form-group">
+                <label for="dq_temporal">DQ Temporal Correlation</label>
+                <input type="text" id="dq_temporal" name="dq_temporal" required>
+            </div>
+            <div class="form-group">
+                <label for="dq_geographical">DQ Geographical Correlation</label>
+                <input type="text" id="dq_geographical" name="dq_geographical" required>
+            </div>
+            <div class="form-group">
+                <label for="dq_technological">DQ Technological Correlation</label>
+                <input type="text" id="dq_technological" name="dq_technological" required>
+            </div>
+            <div class="form-group">
+                <label for="dq_collection">DQ Data Collection</label>
+                <input type="text" id="dq_collection" name="dq_collection" required>
+            </div>
+            <button type="submit" class="predict-btn">Predict</button>
+        </form>
+        <!-- Output Section -->
+
+        <section id="output-section" style="display:none;">
+            <h2>Prediction Result</h2>
+            <div id="predicted-value"></div>
+            <h3>Input Summary</h3>
+            <ul id="input-summary"></ul>
+        </section>
+    </div>
+    <!-- Background image -->
+    <div class="background-img"></div>
+    <script>
+        document.getElementById('ghg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Collect input values
+            const form = e.target;
+            const inputs = {
+                Substance: form.substance.value,
+                Unit: form.unit.value,
+                Source: form.source.value,
+                "Supply Chain": form.supply_chain.value,
+                Margin: form.margin.value,
+                "DQ Reliability": form.dq_reliability.value,
+                "DQ Temporal Correlation": form.dq_temporal.value,
+                "DQ Geographical Correlation": form.dq_geographical.value,
+                "DQ Technological Correlation": form.dq_technological.value,
+                "DQ Data Collection": form.dq_collection.value
+            };
+            // Dummy prediction value
+            const prediction = (Math.random() * 100).toFixed(2) + " " + inputs.Unit;
+            // Show output
+            document.getElementById('predicted-value').textContent = "Predicted Emission: " + prediction;
+            const summary = document.getElementById('input-summary');
+            summary.innerHTML = '';
+            Object.entries(inputs).forEach(([key, value]) => {
+                const li = document.createElement('li');
+                li.textContent = key + ": " + value;
+                summary.appendChild(li);
+            });
+            document.getElementById('output-section').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('output-section').offsetTop, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
