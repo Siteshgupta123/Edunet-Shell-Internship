@@ -5,7 +5,15 @@
 
 # <h1 align="center">GHG Emission Predictor Web App</h1>
 Predict greenhouse gas emissions based on energy consumption inputs using a Flask-powered web interface.This project is apart of Edunet Foundation x Shell AI/ML Internship, focusing on real-world applications of machine learning for sustainability.
+
 ---
+## Project View:
+![GreenHouse Gas Emmsion Prediction WebApp View](https://github.com/user-attachments/assets/5b4a1639-9947-47cb-9b32-9aeb5229afa0)
+![GreenHouse Gas Emmsion Prediction WebApp View-2](https://github.com/user-attachments/assets/3443b36f-2591-4f1c-bd13-f769c7a435ba)
+
+https://github.com/user-attachments/assets/68a33ae2-9fea-402a-86ba-cb6d4a1c5905
+
+--------------------------------------
 ## Project Structure
 ```
 GHG Emission App/
@@ -79,6 +87,6 @@ http://localhost:5000
 | DQ Geographical Correlation   | 0.90                               |
 | DQ Technological Correlation  | 0.86                               |
 | DQ Data Collection            | 0.82                               |
-| Predicted Emission            | 61.3274 kg CO₂e/unit               |
+| Predicted Emission            | 97.88 kg CO₂e/unit               |
 > Value may be vary at time of prediction.
 -----------------------------------------------------------------------------
