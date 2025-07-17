@@ -171,10 +171,16 @@ http://localhost:5000
 Special thanks to **[Raghunanadan M S Sir](https://www.linkedin.com/in/raghunandanms/)**,**[Dr. Dulari Bhatt Ma’am](https://www.linkedin.com/in/dulari-bhatt/)** for their continued mentorship throughout the internship. This project gave me real-world experience in sustainable analytics and AI/ML pipeline development.
 
 ------
-## Contributed by:
-**Sitesh Gupta**  
-Data Analytics & AI/ML Intern  
-[LinkedIn Profile](https://www.linkedin.com/in/siteshgupta)  
-📧 guptasitesh05@gmail.com
+## Thank You! 💙
+
+Thanks for checking out my project! If you found it useful, please consider:  
+[![GitHub stars](https://github.com/Siteshgupta123)] 
+⭐ **Starring** the repo  
+🐛 **Reporting** issues  
+🛠 **Contributing** improvements  
+
+Coded with ❤️ by **Sitesh Gupta**  
+🔗 www.linkedin.com/in/guptasitesh | 💌 Email-guptasitesh05@email.com
+
 
 ------------------
